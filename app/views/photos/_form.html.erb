@@ -1,0 +1,32 @@
+<% if current_user.karina? %>
+  <%= form_with(model: photo, local: true, html: { class: "needs-validation", novalidate: true }) do |form| %>
+    <% if photo.errors.any? %>
+      <div class="alert alert-danger">
+        <h4 class="alert-heading">
+          <%= pluralize(photo.errors.count, "error") %> impidió que esta foto se guardara:
+        </h4>
+        <ul>
+          <% photo.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :image, "Foto", class: "form-label" %>
+      <%= form.file_field :image, class: "form-control", id: "formFileMultiple" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :content, "Descripción", class: "form-label" %>
+      <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "Agrega una descripción para la foto..." %>
+    </div>
+
+    <div class="d-grid gap-2">
+      <%= form.submit "Guardar Foto", class: "btn btn-primary btn-block" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Solo Karina puede subir fotos. Si eres Karina, asegúrate de estar autenticada correctamente.</p>
+<% end %>

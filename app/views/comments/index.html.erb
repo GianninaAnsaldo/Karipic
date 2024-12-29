@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Comments" %>
+
+<div class="card">
+  <h1 class="card-header text-center">Comentarios</h1>
+</div>
+
+<% @comments.each do |comment| %>
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-2">
+        <%= image_tag comment.user.avatar, class: "avatar-img", style:"height: 200px;" %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= comment.user.name %></h5>
+          <p class="card-text"><%= comment.content %></p>
+          <%= link_to "Ver comentario", comment, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div> 
+<% end %>
+
+<div class="my-3">
+  <%= link_to "Volver a Fotos", photos_path, class: "btn btn-secondary" %>
+</div>
