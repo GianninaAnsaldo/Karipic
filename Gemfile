@@ -60,6 +60,4 @@ gem "devise"
 
 gem "faker"
 
-gem "figaro"
-
 gem "aws-sdk-s3"
